@@ -13,8 +13,11 @@ def clean_text(text: str) -> str:
     text=''.join(s if s.isalpha() else ' ' for s in text).rstrip()
     return text
 
-# Step 2 - tokenize (not yet solved)
-# TODO: implement
+# Step 2 - tokenize
+def tokenize(text: str) -> list:
+    # TODO: Split cleaned text on whitespace into non-empty word tokens
+    text=text.split()
+    return text
 
 # Step 3 - tokenize_corpus (not yet solved)
 # TODO: implement
