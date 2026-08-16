@@ -24,8 +24,15 @@ def tokenize_corpus(texts: list) -> list:
     # TODO: Apply clean_text and tokenize to every document so the full corpus becomes a list of token lists.
     return [tokenize(clean_text(i)) for i in texts]
 
-# Step 4 - split_train_val_test_indices (not yet solved)
-# TODO: implement
+# Step 4 - split_train_val_test_indices
+def split_train_val_test_indices(n_samples: int, val_fraction: float, test_fraction: float, seed: int = 0) -> tuple:
+    # TODO: Produce shuffled index arrays that partition n_samples into train/val/test
+    np.random.seed(seed)
+    idx=np.random.permutation(n_samples)
+    n_val=int(n_samples*val_fraction)
+    n_test=int(n_samples*test_fraction)
+
+    return np.split(idx,[n_samples-n_val-n_test,n_samples-n_test])
 
 # Step 5 - count_word_frequencies (not yet solved)
 # TODO: implement
