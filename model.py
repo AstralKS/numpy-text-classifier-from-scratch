@@ -73,8 +73,13 @@ def compute_document_frequencies(bow_matrix: np.ndarray) -> np.ndarray:
     # TODO: Count docs where each term appears at least once (df, shape (V,))
     return (bow_matrix>0).sum(axis=0)
 
-# Step 10 - compute_idf (not yet solved)
-# TODO: implement
+# Step 10 - compute_idf
+def compute_idf(df: np.ndarray, n_docs: int) -> np.ndarray:
+    # TODO: Compute smoothed IDF idf_j = log((n_docs + 1) / (df_j + 1)) + 1
+    idf=np.zeros(len(df))
+    for i in range(len(df)):
+        idf[i]=np.log((n_docs+1)/(df[i]+1))+1
+    return idf
 
 # Step 11 - transform_tfidf (not yet solved)
 # TODO: implement
