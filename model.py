@@ -81,20 +81,33 @@ def compute_idf(df: np.ndarray, n_docs: int) -> np.ndarray:
         idf[i]=np.log((n_docs+1)/(df[i]+1))+1
     return idf
 
-# Step 11 - transform_tfidf (not yet solved)
-# TODO: implement
+# Step 11 - transform_tfidf
+def transform_tfidf(bow_matrix: np.ndarray, idf: np.ndarray) -> np.ndarray:
+    # TODO: Multiply BoW counts by the fitted IDF vector to produce TF-IDF features.
+    return bow_matrix*idf
 
-# Step 12 - fit_tfidf (not yet solved)
-# TODO: implement
+# Step 12 - fit_tfidf
+def fit_tfidf(bow_train: np.ndarray) -> np.ndarray:
+    # TODO: Fit IDF on the training BoW matrix by chaining DF and IDF.
+    df=compute_document_frequencies(bow_train)
+    return compute_idf(df,bow_train.shape[0])
 
-# Step 13 - sigmoid (not yet solved)
-# TODO: implement
+# Step 13 - sigmoid
+def sigmoid(z: np.ndarray) -> np.ndarray:
+    # TODO: Map logits to probabilities with a numerically stable logistic sigmoid.
+    return 1/(1+np.exp(-z))
 
-# Step 14 - logistic_predict_proba (not yet solved)
-# TODO: implement
+# Step 14 - logistic_predict_proba
+def logistic_predict_proba(X: np.ndarray, w: np.ndarray, b: float) -> np.ndarray:
+    # TODO: Return P(y=1|x) for each row via linear scores and sigmoid
+    return sigmoid(X @ w +b)
 
-# Step 15 - binary_cross_entropy (not yet solved)
-# TODO: implement
+# Step 15 - binary_cross_entropy
+def binary_cross_entropy(y_true: np.ndarray, y_prob: np.ndarray, w: np.ndarray, l2_lambda: float) -> float:
+    # TODO: Compute mean binary cross-entropy plus L2 penalty on the weights.
+    y_prob=np.clip(y_prob,1e-15,1-1e-15)
+    bce=-np.mean(y_true*np.log(y_prob)+(1-y_true)*np.log(1-y_prob))
+    return float(bce+l2_lambda*np.sum(w**2)/2)
 
 # Step 16 - logistic_gradients (not yet solved)
 # TODO: implement
