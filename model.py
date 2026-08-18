@@ -170,11 +170,22 @@ def confusion_counts(y_true: np.ndarray, y_pred: np.ndarray) -> tuple:
     c=np.bincount(2*y_true+y_pred,minlength=4)
     return int(c[3]),int(c[1]),int(c[0]),int(c[2])
 
-# Step 22 - metrics_from_counts (not yet solved)
-# TODO: implement
+# Step 22 - metrics_from_counts
+def metrics_from_counts(tp: int, fp: int, tn: int, fn: int) -> dict:
+    # TODO: Derive precision, recall, F1, and accuracy from confusion counts...
+    precision=tp/(tp+fp) if tp+fp else 0.0
+    recall=tp/(tp+fn) if tp+fn else 0.0
+    f1=2*precision*recall/(precision+recall) if precision+recall else 0.0
+    accuracy=(tp+tn)/(tp+fp+tn+fn) if tp+fp+tn+fn else 0.0
+    return {'precision': float(precision),'recall': float(recall),'f1': float(f1),'accuracy': float(accuracy)}
 
-# Step 23 - tune_decision_threshold (not yet solved)
-# TODO: implement
+# Step 23 - tune_decision_threshold
+def tune_decision_threshold(y_true: np.ndarray, proba: np.ndarray, thresholds: np.ndarray = None) -> tuple:
+    # TODO: Find the decision threshold that maximizes F1 on validation data.
+    thresholds=np.linspace(0.0,1.0,101) if thresholds is None else thresholds
+    scores=[metrics_from_counts(*confusion_counts(y_true, predict_labels(proba, t)))['f1'] for t in thresholds]
+    i = np.argmax(scores)
+    return float(thresholds[i]), float(scores[i])
 
 # Step 24 - evaluate_predictions (not yet solved)
 # TODO: implement
