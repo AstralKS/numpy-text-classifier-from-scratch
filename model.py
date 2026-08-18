@@ -187,8 +187,13 @@ def tune_decision_threshold(y_true: np.ndarray, proba: np.ndarray, thresholds: n
     i = np.argmax(scores)
     return float(thresholds[i]), float(scores[i])
 
-# Step 24 - evaluate_predictions (not yet solved)
-# TODO: implement
+# Step 24 - evaluate_predictions
+def evaluate_predictions(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+    # TODO: Bundle confusion counts and classification metrics into one report dict
+    tp,fp,tn,fn=confusion_counts(y_true,y_pred)
+    metrics=metrics_from_counts(tp,fp,tn,fn)
+
+    return {'tp':tp,'fp':fp,'tn':tn,'fn':fn,**metrics}
 
 # Step 25 - vectorize_texts (not yet solved)
 # TODO: implement
