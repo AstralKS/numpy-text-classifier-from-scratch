@@ -127,8 +127,10 @@ def logistic_gradients(X: np.ndarray, y_true: np.ndarray, y_prob: np.ndarray, w:
     e=y_prob-y_true
     return X.T@e/len(y_true)+l2_lambda*w, float(e.mean())
 
-# Step 17 - initialize_logistic_params (not yet solved)
-# TODO: implement
+# Step 17 - initialize_logistic_params
+def initialize_logistic_params(n_features: int) -> tuple:
+    # TODO: Return a zero weight vector of shape (n_features,) and bias 0.0
+    return np.zeros(n_features,),0.0
 
 # Step 18 - gradient_descent_step (not yet solved)
 # TODO: implement
