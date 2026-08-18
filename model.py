@@ -195,8 +195,12 @@ def evaluate_predictions(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
 
     return {'tp':tp,'fp':fp,'tn':tn,'fn':fn,**metrics}
 
-# Step 25 - vectorize_texts (not yet solved)
-# TODO: implement
+# Step 25 - vectorize_texts
+def vectorize_texts(texts: list, vocab: dict, idf: np.ndarray) -> np.ndarray:
+    # TODO: Clean, tokenize, BoW, and TF-IDF transform a list of raw strings.
+    tokenized=tokenize_corpus(texts)
+    bow=corpus_to_bow_matrix(tokenized,vocab)
+    return transform_tfidf(bow,idf)
 
 # Step 26 - predict_text (not yet solved)
 # TODO: implement
