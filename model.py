@@ -222,6 +222,11 @@ def predict_text(text: str, vocab: dict, idf: np.ndarray, w: np.ndarray, b: floa
     proba=logistic_predict_proba(features,w,b)
     return int(predict_labels(proba,threshold)[0])
 
-# Step 27 - collect_prediction_errors (not yet solved)
-# TODO: implement
+# Step 27 - collect_prediction_errors
+def collect_prediction_errors(texts: list, y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+    # TODO: Gather raw messages that are false positives vs false negatives...
+    return {
+        'false_positives':[t for t,y,p in zip(texts,y_true,y_pred)if y==0<p],
+        'false_negatives':[t for t,y,p in zip(texts,y_true,y_pred)if y==1>p]
+    }
 
